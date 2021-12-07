@@ -1,0 +1,128 @@
+IMMPORTANT COMMANDS IN SQL LANGGUAGE
+
+1.to find out how many tables we have querry is
+
+   "select table_name from user_tables;"
+
+2.to find out ROWNUMBER
+
+    " SELECT ROW_NUMBER() OVER(Partition by ENAME ORDER BY ENAME) AS Row_Number from Emp;"
+
+    " SELECT ROW_NUMBER() OVER(ORDER BY ENAME) AS ROW_NUMBER FROM EMP;"
+
+3. Using DISTINCT to Retrieve Non-Repeated Records
+    
+    "SELECT DISTINCT column_name FROM table_name;
+
+4.Retrieving Data Without NULL in a Certain Column
+
+     "SELECT comm FROM emp WHERE comm IS NOT NULL;"
+
+5.Filtering Data Using WHERE Clause
+
+     " select empno,ename,job from emp where SAL='3000';
+
+6. Filtering Data Using Conditions Joined by AND Operator
+   Filtering Data Using Conditions Joined by OR Operator
+
+     " select empno,ename,job from emp where sal='3000' or ename='ford';"
+     " select empno,ename,job from emp where sal='3000' and ename='ford';"
+
+7. Sorting Data According to One Column
+
+     "select empno,ename from emp order by ename;"
+
+8.Sorting Data According to More Than One Column
+
+     "select empno,ename from emp order by ename desc, comm;"
+
+9.13. Adding Data From Different Tables
+
+      "select empno from emp union all select deptno from dept;"
+
+      =>  expression must have same datatype as corresponding expression
+
+10. Counting the Number of Rows in a Tablexd
+
+      "select count(*) from emp;"
+      "select count(comm) from emp where comm is not null;"
+
+11.Finding the Intersection of Sets of Data
+
+      "SELECT last_name FROM customer INTERSECT SELECT last_name FROM employee;
+
+12.Joining Data From Different Tables
+ 
+       "select *from s1 inner join s2 on s1.no=s2.no"
+       "select *from s1 left join s2 on s1.no=s2.no"
+       "select *from s1 right join s2 on s1.no=s2.no"
+       "select *from s1 full join s2 on s1.no=s2.no"
+
+13.subqueries: query within the other query is called subquery
+     =>first will execute the inner query and then based on inner query results,
+        outer query will be executed 
+
+        "select *from emp where sal in(select min(sal) from emp);"
+
+14.in line query = where ever we write the query from *
+     =>first outer query will execute then based on outer query inner will execute
+       and then based upon inner query results execution again outer query will be executed
+
+       "select *from emp e1 where sal>(select min(sal) from emp e2 where e1.sal=e2.sal);"
+       "select *from emp e1 where sal>=(select min(sal) from emp e2 where e1.sal=e2.sal);"
+       "select *from emp where sal=(select max(sal) from emp);"
+
+15.to insert decimal values are decimal(4,5) like this
+    it means total no of intiger not more than 4 and right side digits are below 5
+
+16. insert into input values(30,to_date('2021-12-12','yyyy-mm-dd'),to_date('2021-12-30','yyyy-mm-dd'));
+
+17. select data,rank() over(order by data) as rank,dense_rank() over(order by data) as dense_rank,
+     row_number() over(order by data) as row_number from data_culomn;                                             
+
+DATA                  RANK DENSE_RANK ROW_NUMBER
+--------------- ---------- ---------- ----------
+alpha                    1          1          1
+alpha                    1          1          2
+alpha                    1          1          3
+beta                     4          2          4
+charlie                  5          3          5
+charlie                  5          3          6
+delta                    7          4          7
+gama                     8          5          8   
+
+
+18.insert nulls into table is
+   INSERT INTO agents
+   VALUES ("A001","Jodi","London",.12,NULL);
+
+19.to view current date and timestamp;
+   "SELECT CURRENT_TIMESTAMP from dual;"
+   "select current_date from dual;"
+
+20.select avg(sal) from emp;
+   select min(sal) from emp;
+   select max(sal) from emp;
+   select count(*) from emp;
+
+
+21.alter table mk add name varchar(14);
+   update mk set location='chilamkur' where no=1;
+
+
+22.To find out duplicates
+
+  A) SELECT COUNT(*),ID FROM DP_FIND GROUP BY ID;
+
+  B)SELECT COUNT(*),ID FROM DP_FIND GROUP BY ID having count(*)=3;
+
+  C)SELECT COUNT(*),ID FROM DP_FIND GROUP BY ID having count(*)>1;
+
+23.multiple rows to single column
+
+   " select listAgg(name, ',') within group(order by name) from table143;"
+
+
+
+  
+     
